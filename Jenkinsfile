@@ -3,14 +3,10 @@ pipeline {
     tools {
         maven 'maven3'
     }
-    options {
-        buildDiscarder logRotator(daysToKeepStr: '5', numToKeepStr: '7')
-    }
     stages{
         stage('Build'){
             steps{
                  sh script: 'mvn clean package'
-                 archiveArtifacts artifacts: 'target/*.war', onlyIfSuccessful: true
             }
         }
         stage('Upload War To Nexus'){
@@ -23,19 +19,20 @@ pipeline {
                         [
                             artifactId: 'simple-app', 
                             classifier: '', 
-                            file: "target/simple-app-${mavenPom.version}.war", 
+                            file: 'target/simple-app-1.0.0.war', 
                             type: 'war'
                         ]
                     ], 
-                    credentialsId: 'nexus3', 
+                    credentialsId: 'nexus', 
                     groupId: 'in.javahome', 
-                    nexusUrl: '172.31.15.204:8081', 
+                    nexusUrl: '20.187.83.10', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: nexusRepoName, 
-                    version: "${mavenPom.version}"
+                    repository: 'http://20.187.83.10:8081/repository/simpleapp/', 
+                    version: '1.0.0'
+                    
                     }
             }
         }
-    }
+	}
 }
