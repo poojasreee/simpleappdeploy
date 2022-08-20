@@ -21,10 +21,10 @@ pipeline {
                     ], 
                     credentialsId: 'nexus', 
                     groupId: 'in.javahome', 
-                    nexusUrl: '20.187.83.10', 
+                    nexusUrl: '20.187.83.10:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: 'http://20.187.83.10:8081/repository/simpleapp/', 
+                    repository: 'simpleapp', 
                     version: '1.0.0'
                     
                     }
