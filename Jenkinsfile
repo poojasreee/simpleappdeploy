@@ -15,7 +15,7 @@ pipeline {
                         [
                             artifactId: 'simple-app', 
                             classifier: '', 
-                            file: 'pom.xml', 
+                            file: 'target/simple-app-3.0-SNAPSHOT.war', 
                             type: 'war'
                         ]
                     ], 
